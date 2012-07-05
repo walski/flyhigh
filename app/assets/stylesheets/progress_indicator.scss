@@ -1,0 +1,67 @@
+$bigRadius: 75px;
+$ratio: 0.8;
+$bgColor: #000;
+$fgColor: #EEE;
+$textColor: #000;
+
+#progress-indicator {
+  .curtain {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.95;
+    background-color: $bgColor;
+    background-image: url(/assets/photos/curtain.jpg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center top;
+  }
+
+  .display {
+    display: none;
+  }
+
+  .label {
+    overflow:hidden;
+    position: absolute;
+    right: 6.5%;
+    bottom: 8.7%;
+
+    font-family: "museo-sans",sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+
+    .spacer {
+      visibility: hidden;
+      display: inline-block;
+      line-height: 0;
+    }
+
+    .hide {
+      overflow: hidden;
+      -webkit-transition: width 0.5s ease-out;
+    }
+
+    a.start {
+      white-space: nowrap;
+      color: $textColor;
+      text-decoration: none;
+
+      &:visited, &:clicked {
+        color: $textColor;
+      }
+    }
+  }
+
+  &.progress-100 a.start {
+    text-decoration: underline;
+  }
+}
+
+@for $i from 0 through 100 {
+  #progress-indicator.progress-#{$i} .hide {
+    width: 1% * $i;
+  }
+}
