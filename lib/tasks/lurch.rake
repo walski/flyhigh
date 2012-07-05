@@ -112,6 +112,8 @@ namespace :lurch do
   desc "Deploy the page to GitHub pages"
   task :deploy => :generate do
     Dir.mktmpdir do |deploy_dir|
+      FileUtils.cp_r(File.expand_path('./.git', Rails.root), File.expand_path('./.git', deploy_dir))
+
       cd deploy_dir do
         `git co gh-pages`
         `git filter-branch -f --index-filter "git rm -rf --cached --ignore-unmatch -f *" HEAD`
@@ -119,7 +121,6 @@ namespace :lurch do
         Dir[File.expand_path('./tmp/rails_static/*', Rails.root)].each do |file|
           FileUtils.cp_r(file, deploy_dir)
         end
-        FileUtils.cp_r(File.expand_path('./.git', Rails.root), File.expand_path('./.git', deploy_dir))
         FileUtils.copy(File.expand_path('./tmp/photos/CNAME', Rails.root), deploy_dir)
         `git add .`
         message = "Site updated at #{Time.now.utc}"
