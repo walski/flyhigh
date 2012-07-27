@@ -20,7 +20,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'handlebars_assets'
-  gem 'rails_static', path: '/Users/walski/projects/rails_static'
+  gem 'rails_static', path: '../rails_static'
 end
 
 gem 'jquery-rails'
