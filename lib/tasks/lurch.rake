@@ -51,6 +51,10 @@ def data_target_path
   target_path = File.expand_path('../../../app/assets/javascripts/data.js.coffee', __FILE__)
 end
 
+def get_dimensions(path)
+  `identify #{path}`.match(/\s(\d+)x(\d+)\s/).captures.map &:to_i
+end
+
 VARIANTS = {
   small:  [638, 384],
   medium: [1366, 768],
@@ -69,7 +73,11 @@ namespace :lurch do
         FileUtils.copy(photo_source, target_file)
         ImageScience.with_image(target_file) do |img|
           VARIANTS.each do |variant, resolution|
-            img.resize(resolution.first, resolution.last) do |img2|
+            width, height = get_dimensions(target_file)
+            new_width, new_height = resolution
+            new_width = width * (new_width.to_f / width)
+
+            img.resize(new_width, new_height) do |img2|
               img2.save File.expand_path("./#{variant}.jpg", photo_target)
             end
           end
