@@ -81,7 +81,7 @@ $ ->
     images = []
     for chapterName in window.lurch.toc
       chapter = window.lurch.chapters[chapterName]
-      images = images.concat(chapter.images.map (image) -> image.urls.medium)
+      images = images.concat(chapter.images.map (image) -> image.urls.small)
     showPreloader(images)
 
   browserWindow.resize(browserResize)

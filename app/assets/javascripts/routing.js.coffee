@@ -23,7 +23,7 @@ Router = Backbone.Router.extend({
 
     i = 0
     for chapterImage in chapter.images
-      imageIndex = i if matchesImageName(image, chapterImage.urls.medium)
+      imageIndex = i if matchesImageName(image, chapterImage.urls.small)
       i++
 
     unless imageIndex
@@ -37,7 +37,7 @@ Router = Backbone.Router.extend({
 
   navigateToImage: (chapter, image) ->
     chapterName = window.lurch.toc[chapter]
-    imageUrl = window.lurch.chapters[chapterName].images[image].urls.medium
+    imageUrl = window.lurch.chapters[chapterName].images[image].urls.small
     imageName = imageUrl.split(/\//)
     imageName = imageName[imageName.length - 2]
     imageName = imageName.replace(/\.jpg$/, '')
