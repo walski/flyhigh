@@ -75,7 +75,7 @@ namespace :lurch do
           VARIANTS.each do |variant, resolution|
             width, height = get_dimensions(target_file)
             new_width, new_height = resolution
-            new_width = width * (new_width.to_f / width)
+            new_width = width * (new_height.to_f / height)
 
             img.resize(new_width, new_height) do |img2|
               img2.save File.expand_path("./#{variant}.jpg", photo_target)
