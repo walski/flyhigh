@@ -125,8 +125,9 @@ namespace :lurch do
       cd deploy_dir do
         `git branch -f gh-pages`
         `git checkout gh-pages`
-        `git filter-branch -f --index-filter "git rm -rf --cached --ignore-unmatch -f *" HEAD`
-        `rm -rf *`
+        `git stash`
+        `git filter-branch --tree-filter 'rm -rf *' gh-pages`
+        `git stash clear`
         Dir[File.expand_path('./tmp/rails_static/*', Rails.root)].each do |file|
           FileUtils.cp_r(file, deploy_dir)
         end
