@@ -53,6 +53,7 @@ $ ->
     resizeImages()
     window.lurch.minimap.show()
     setTimeout(hidePreloader, 1000)
+    window.lurch.navigation.loadHDTimeout = setTimeout(window.lurch.navigation.loadHD, 1000)
 
   resizePreloader = ->
     preloaderDisplay = progressIndicator.find('.display');

@@ -17,10 +17,27 @@ class Navigation
   @stopScroll = =>
     @body().stop(true)
 
+  @loadHDTimeout = null
+
+  @loadHD = =>
+    hdUrl = window.lurch.chapters[window.lurch.toc[@chapter]].images[@image].urls.large
+    image = $('[data-hd-image-url="' + hdUrl + '"]')
+    hdImage = image.find('.hd-image')
+    if hdImage.length < 1
+      hdImage = $(JST['images/hd'](url: hdUrl))
+      image.append(hdImage)
+    hdImage.addClass('active')
+
   @reset = (immediately) =>
+    clearTimeout(@loadHDTimeout) if @loadHDTimeout
+    $('.hd-image').removeClass('active')
+
     window.lurch.minimap.activate(@chapter, @image)
     @setChapter(@chapter)
     @setImage(@image)
+
+    @loadHDTimeout = setTimeout(@loadHD, 1000)
+
     new_x = @chapter * window.lurch.environment.width
     new_y = @image * window.lurch.environment.height
 

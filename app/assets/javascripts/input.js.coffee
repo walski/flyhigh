@@ -8,6 +8,7 @@ $ ->
   browserWindow = $(window)
   browserWindow.on 'mousewheel', window.lurch.application.reactToScroll
   browserWindow.on 'DOMMouseScroll', window.lurch.application.reactToScroll
+  browserWindow.on 'touchend', window.lurch.application.reactToScroll
 
   $('#canvas').on "click", ".chapter .image", (e) ->
     e.preventDefault()

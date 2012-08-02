@@ -1,9 +1,23 @@
 .chapter {
-  .image {
+  .background-image {
     width: 100%;
     height: 100%;
     background-size: auto 95%;
     background-position: center;
     background-repeat: no-repeat;
+  }
+  .image {
+    position: relative;
+
+    .hd-image {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      &.active {
+        display: block;
+      }
+    }
   }
 }

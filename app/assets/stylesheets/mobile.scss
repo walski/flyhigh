@@ -1,0 +1,19 @@
+#portrait-warning {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 40%;
+  font-size: 40px;
+}
+
+@media only screen and (orientation:portrait){
+  #progress-indicator, #canvas {
+    display: none
+  }
+  
+  #portrait-warning {
+    display: block;
+  }
+}

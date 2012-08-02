@@ -135,7 +135,8 @@ namespace :lurch do
         `git add .`
         message = "Site updated at #{Time.now.utc}"
         `git commit -m \"#{message}\"`
-        `git push origin gh-pages --force`
+        `git push origin :gh-pages`
+        `git push origin gh-pages`
       end
     end
   end
